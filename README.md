@@ -1,13 +1,35 @@
-# Fedora Silverblue (custom build)
+# Atomic OS
 
-[![Build Fedora](https://github.com/lucasng-dev/fedora-custom/actions/workflows/build.yml/badge.svg)](https://github.com/lucasng-dev/fedora-custom/actions/workflows/build.yml)
+[![Build OS](https://github.com/lucasng-dev/atomic-os/actions/workflows/build.yaml/badge.svg)](https://github.com/lucasng-dev/atomic-os/actions/workflows/build.yaml)
 
-Custom Fedora Silverblue [OCI image](https://coreos.github.io/rpm-ostree/container/).
+Custom operating system image based on [Fedora Atomic](https://fedoraproject.org/atomic-desktops/) and [BlueBuild](https://github.com/blue-build/template).
 
-Based on Fedora Silverblue [upstream image](https://quay.io/repository/fedora-ostree-desktops/silverblue) and scripts from [ublue-os/main](https://github.com/ublue-os/main).
-
-## Usage
+## Rebase existing installation _(unsigned)_
 
 ```sh
-rpm-ostree rebase ostree-unverified-registry:ghcr.io/lucasng-dev/fedora-custom:latest
+bootc switch ghcr.io/lucasng-dev/atomic-gnome:latest
+```
+
+## Rebase existing installation _(signed)_
+
+```sh
+bootc switch --enforce-container-sigpolicy ghcr.io/lucasng-dev/atomic-gnome:latest
+```
+
+## Build container from local recipe
+
+```sh
+bluebuild build recipes/atomic-gnome.yaml
+```
+
+## Build ISO from remote image
+
+```sh
+bluebuild generate-iso --output-dir isos --iso-name atomic-gnome.iso image ghcr.io/lucasng-dev/atomic-gnome:latest
+```
+
+## Build ISO from local recipe
+
+```sh
+bluebuild generate-iso --output-dir isos --iso-name atomic-gnome.iso recipe recipes/atomic-gnome.yaml
 ```
