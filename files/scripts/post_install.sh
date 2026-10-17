@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
 set -eux -o pipefail
 
-# install ublue packages: https://github.com/ublue-os/packages
-git clone --depth=1 https://github.com/ublue-os/packages.git ublue-packages
-find ublue-packages/packages -type f -name '*.spec' -delete
-cp -a ublue-packages/packages/ublue-os-update-services/src/. /
+# install docker-sbx - https://github.com/docker/sbx-releases/issues/84
+dnf install -y https://github.com/docker/sbx-releases/releases/latest/download/DockerSandboxes-linux-amd64-rockylinux8.rpm
 
 # install insync
 dnf install -y \
@@ -41,7 +39,6 @@ rm -vf /usr/lib/sysusers.d/*docker*.conf /usr/lib/sysusers.d/*moby*.conf 2>/dev/
 tee /usr/lib/sysusers.d/docker.conf <<-'EOF'
 	g docker 913
 EOF
-ln -vsrT /usr/libexec/docker/cli-plugins/docker-compose /usr/bin/docker-compose || true
 
 # 1password groups
 rm -vf /usr/lib/sysusers.d/*1password*.conf /usr/lib/sysusers.d/*onepassword*.conf 2>/dev/null || true
