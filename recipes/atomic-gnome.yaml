@@ -4,12 +4,14 @@
 name: atomic-gnome
 description: Atomic OS - GNOME
 
-base-image: quay.io/fedora-ostree-desktops/silverblue
+base-image: ghcr.io/ublue-os/silverblue-main
 image-version: 44
 platforms:
   - linux/amd64
 
 modules:
+  - type: signing
+
   - type: files
     files:
       - source: system
@@ -25,208 +27,146 @@ modules:
       packages:
         # base
         - "@virtualization"
+        - adw-gtk3-theme
+        - bat
+        - bc
+        - btop
+        - cmatrix
+        - curl
+        - expect
+        - eza
+        - fastfetch
+        - fd-find
+        - fzf
         - gnome-boxes
+        - htop
+        - inxi
+        - jq
         - langpacks-en
         - langpacks-pt
-        - zsh
-        - eza
-        - bat
         - less
-        - micro
-        - micro-default-editor
-        - nano
-        - vim
-        - neovim
-        - mc
-        - lsb_release
-        - fzf
-        - fd-find
-        - ripgrep
-        - tree
-        - ncdu
-        - tldr
-        - bc
-        - rsync
-        - tmux
-        - screen
-        - btop
-        - htop
-        - nvtop
-        - inxi
-        - lshw
         - lm_sensors
+        - lolcat
+        - lsb_release
+        - lshw
+        - mc
+        - micro
+        - nano
+        - ncdu
+        - neovim
+        - nvtop
+        - onefetch
+        - openssl
+        - ripgrep
+        - rsync
+        - screen
+        - tldr
+        - tmux
+        - tree
+        - vim
+        - wget
+        - wl-clipboard
         - xclip
         - xsel
-        - wl-clipboard
-        - expect
-        - openssl
-        - curl
-        - wget
-        - jq
         - yq
-        - stow
-        - cmatrix
-        - lolcat
-        - fastfetch
-        - onefetch
-        - topgrade
-        - starship
-        - adw-gtk3-theme
-
+        - zsh
         # network
-        - net-tools
+        - bind-utils
+        - firejail
+        - firewall-config
+        - iperf3
         - iw
+        - mtr
+        - net-tools
+        - netcat
+        - nmap
+        - nss-tools
+        - samba
+        - speedtest-cli
+        - sshuttle
+        - tcpdump
         - telnet
         - traceroute
-        - bind-utils
-        - mtr
-        - nmap
-        - netcat
-        - tcpdump
-        - wol
-        - nss-tools
         - whois
-        - iperf3
-        - speedtest-cli
         - wireguard-tools
-        - firewall-config
-        - sshuttle
-        - samba
-        - tailscale
-
+        - wol
         # utils
-        - freerdp
-        - binwalk
-        - sqlite
         - alien
-        - rpmrebuild
+        - android-tools
+        - binwalk
         - cups-pdf
-
+        - freerdp
+        - rpmrebuild
+        - sqlite
+        - stow
         # file system
-        - gparted
-        - parted
         - bsdtar
-        - zstd
-        - p7zip
-        - p7zip-plugins
-        - zip
-        - unzip
-        - unrar
-        - unar
-        - squashfs-tools
         - btrbk
-        - snapper
         - btrfs-assistant
         - duperemove
-        - trash-cli
         - fuse-libs
         - fuse3-libs
-
-        # fonts
-        - ms-core-fonts
-        - firacode-nerd-fonts
-
+        - gparted
+        - p7zip
+        - p7zip-plugins
+        - parted
+        - snapper
+        - squashfs-tools
+        - trash-cli
+        - unar
+        - unrar
+        - unzip
+        - zip
+        - zstd
         # containers
-        - docker-ce
-        - docker-ce-cli
-        - containerd.io
-        - docker-buildx-plugin
-        - docker-compose-plugin
+        - bubblewrap
+        - crun-krun
         - distrobox
+        - docker
+        - docker-compose
+        - helm
+        - kubernetes-client
         - podman
         - podman-compose
-        - kubernetes-client
-        - helm
-
+        - socat
         # vcs
         - git
-        - git-credential-manager
-        - git-lfs
         - git-delta
-        - git-filter-repo
         - git-extras
-        - gh
-        - lazygit
-
-        # development: base
-        - ShellCheck
-        - shfmt
-        - direnv
-        - mise
-        - gcc
-        - gcc-c++
-        - make
-        - cmake
-        - just
+        - git-filter-repo
+        - git-lfs
+        # development
         - autoconf
         - automake
+        - bison
+        - cmake
+        - direnv
+        - gcc
+        - gcc-c++
+        - just
+        - m4
+        - make
         - meson
         - ninja
-        - bison
-        - m4
         - patch
+        - ShellCheck
+        - shfmt
         - texinfo
-
-        # development: javascript
-        - nodejs
-        - nodejs-npm
-        - yarnpkg
-        - pnpm
-        - deno
-        - bun-bin
-
-        # development: python
-        - python3
-        - python3-pip
-
-        # development: java
-        - java-devel
-
-        # development: dotnet
-        - dotnet-sdk-10.0
-
-        # development: golang
-        - golang
-
-        # development: rust
-        - rust
-        - rustup
-        - rust-src
-        - rustfmt
-        - rust-analyzer
-        - cargo
-        - clippy
-
-        # development: android
-        - android-tools
-
-        # development: ide
-        - code
-        - zed
-        - zed-cli
-
         # apps
-        - tilix
-        - tilix-nautilus
-        - gnome-tweaks
-        - ffmpegthumbnailer
-        - sushi
         - dconf-editor
+        - ffmpegthumbnailer
         - file-roller
         - file-roller-nautilus
-        - gnome-text-editor
         - gnome-firmware
-        - openrgb
-        - syncthing
-        - seahorse
-        - steam-devices
+        - gnome-text-editor
+        - gnome-tweaks
         - rclone
         - rclone-browser
-        - google-chrome-stable
-        - brave-origin
-        - 1password
-        - 1password-cli
-
+        - seahorse
+        - sushi
+        - syncthing
+        - tilix
+        - tilix-nautilus
         # wifiman
         - libayatana-appindicator3
         - webkit2gtk4.1
@@ -236,6 +176,45 @@ modules:
         - gnome-terminal
         - ptyxis
 
+  - type: dnf
+    repos:
+      files:
+        - terra.repo
+    install:
+      allow-erasing: true
+      packages:
+        # base
+        - micro-default-editor
+        - starship
+        - topgrade
+        # fonts
+        - firacode-nerd-fonts
+        - ms-core-fonts
+        # vcs
+        - git-credential-manager
+        - lazygit
+        # development
+        - mise
+        - zed
+        - zed-cli
+
+  - type: dnf
+    repos:
+      files:
+        - 1password.repo
+        - brave-browser.repo
+        - google-chrome.repo
+        - tailscale.repo
+        - vscode.repo
+    install:
+      packages:
+        - 1password
+        - 1password-cli
+        - brave-origin
+        - code
+        - google-chrome-stable
+        - tailscale
+
   - type: script
     scripts:
       - post_install.sh
@@ -243,22 +222,17 @@ modules:
   - type: systemd
     system:
       enabled:
-        - rpm-ostreed-automatic.timer
-        - flatpak-system-update.timer
-        - sshd.service
-        - libvirtd.service
         - docker.service
         - docker.socket
-        - podman.socket
+        - libvirtd.service
         - podman-restart.service
+        - podman.socket
+        - sshd.service
         - tailscaled.service
-      masked:
-        - flatpak-add-fedora-repos.service
     user:
       enabled:
-        - flatpak-user-update.timer
-        - podman.socket
         - podman-restart.service
+        - podman.socket
 
   - type: gnome-extensions
     install:
@@ -285,5 +259,3 @@ modules:
   - type: bling
     install:
       - dconf-update-service
-
-  - type: signing
