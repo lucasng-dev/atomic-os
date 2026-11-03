@@ -5,7 +5,7 @@ name: atomic-gnome
 description: Atomic OS - GNOME
 
 base-image: ghcr.io/ublue-os/silverblue-main
-image-version: 44
+image-version: 45
 platforms:
   - linux/amd64
 

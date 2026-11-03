@@ -53,7 +53,6 @@ num-workspaces=1
 
 [org.gnome.mutter]
 center-new-windows=true
-experimental-features=['scale-monitor-framebuffer']
 
 [org.gnome.shell.weather]
 automatic-location=true
