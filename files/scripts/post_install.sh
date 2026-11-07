@@ -6,7 +6,7 @@ dnf install -y https://github.com/docker/sbx-releases/releases/latest/download/D
 
 # install insync
 dnf install -y \
-	"https://dl.insynchq.com/linux/desktop/fedora/$(rpm -E %fedora)" \
+	'https://dl.insynchq.com/linux/desktop/fedora/44' `#TODO: restore $(rpm -E %fedora)` \
 	'https://dl.insynchq.com/linux/nautilus/rpm'
 
 # install canon printer drivers: https://tw.canon/en/support/0101230101
