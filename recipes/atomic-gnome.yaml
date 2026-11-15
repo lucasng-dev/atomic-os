@@ -202,7 +202,9 @@ modules:
         - 1password-cli
         - brave-origin
         - code
-        - google-chrome-stable
+        # https://github.com/coreos/chunkah/issues/189
+        - https://dl.google.com/linux/chrome/rpm/stable/x86_64/google-chrome-stable-157.0.8103.38-1.x86_64.rpm
+        #- google-chrome-stable
         - tailscale
 
   - type: script

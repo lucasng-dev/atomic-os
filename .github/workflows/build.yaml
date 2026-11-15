@@ -6,13 +6,9 @@ on:
   schedule:
     - cron: "0 12 * * 6"
   push:
-    branches:
-      - main
     paths-ignore:
       - "**.md"
   pull_request:
-    branches:
-      - main
     paths-ignore:
       - "**.md"
 
@@ -37,7 +33,6 @@ jobs:
       - name: Build Image
         uses: blue-build/github-action@fb86c457fd3d0e13d5e9c1875c6305cf28b09234 # v1.14.0
         with:
-          cli_version: v0.9.41 # https://github.com/blue-build/cli/issues/911
           recipe: ${{ matrix.recipe }}
           cosign_private_key: ${{ secrets.SIGNING_SECRET }}
           registry_token: ${{ github.token }}
